@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script>
+ function performCommand(event) {
+  if ( event.command === "closeTabsRight" ) {
+    closeTabsRight();
+  }
+ }
+
+ function closeTabsRight() {
+  var tabs = safari.application.activeBrowserWindow.tabs;
+  var tabIsRight = false;
+  var tabsToClose = Array();
+  for ( var i = 0; i < tabs.length; i++ ) {
+   if ( tabIsRight == true ) {
+    tabs[i].close();
+   } else {
+    if ( tabs[i] == safari.application.activeBrowserWindow.activeTab ) {
+     tabIsRight = true;
+    }
+   }
+  }
+ }
+
+ safari.application.addEventListener("command", performCommand, false);
+</script>
+</head>
+<body>
+</body>
+</html>
